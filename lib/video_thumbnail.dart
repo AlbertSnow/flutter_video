@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 class VideoThumbnailThumbnail extends StatefulWidget {
   const VideoThumbnailThumbnail(this.videoPath, {Key key}) : super(key: key);
@@ -38,29 +41,40 @@ class _VideoThumbnailThumbnailState extends State<VideoThumbnailThumbnail> {
     );
   }
 
-  // Widget renderVideoThumbnail() {
-  //   return FutureBuilder(
-  //     future: _initializeVideoPlayerFuture,
-  //     builder: (context, snapshot) {
-  //       if (!mounted) {
-  //         return SizedBox.shrink();
-  //       }
-  //
-  //       print(snapshot.connectionState);
-  //       if (snapshot.hasError) print(snapshot.error);
-  //       if (snapshot.connectionState == ConnectionState.done) {
-  //         return Container(
-  //           width: 200.0,
-  //           height: 200.0,
-  //           child: VideoPlayer(widget.videoPath),
-  //         );
-  //       } else {
-  //         return Center(
-  //           child: CircularProgressIndicator(),
-  //         );
-  //       }
-  //     },
-  //   );
-  // }
+  Future<Uint8List> render() async {
+    return await VideoThumbnail.thumbnailData(
+      video: widget.videoPath,
+      imageFormat: ImageFormat.JPEG,
+      maxWidth: 128, // specify the width of the thumbnail, let the height auto-scaled to keep the source aspect ratio
+      quality: 25,
+    );
+
+  }
+
+  Widget renderVideoThumbnail() {
+    return FutureBuilder<Uint8List>(
+      future: render(),
+      builder: (context, snapshot) {
+        if (!mounted || snapshot == null) {
+          return SizedBox.shrink();
+        }
+
+        print(snapshot.connectionState);
+        if (snapshot.hasError) print(snapshot.error);
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Container(
+            width: 200.0,
+            height: 200.0,
+            child: Image.memory(snapshot.data),
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
+  }
 
 }
