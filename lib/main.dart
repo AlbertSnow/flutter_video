@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_video/video_thumbnail.dart';
+import 'package:flutter_video/video_player_thumbnail.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {
@@ -32,7 +32,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
   var videoPathList = <String>[
     '/storage/emulated/0/DCIM/Camera/VID20210906155701.mp4',
@@ -55,12 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
     '/storage/emulated/0/aserbao/1617002558492.mp4',
     '/storage/emulated/0/aserbao/1617002542544.mp4'
   ];
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   Future<void> requestPermission() async {
     bool isGrant = await Permission.storage.isGranted;
@@ -96,14 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 requestPermission();
                 setState(() {});
-              },
-            ),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              }, child: Text("RequestPermission"),
             ),
             Container(
               width: double.infinity,
@@ -114,17 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     return Container(
                         color: Color.fromARGB(155, 100, 100, 100),
                         height: 300,
-                        child: VideoThumbnail(videoPathList[index]));
+                        child: VideoPlayerThumbnail(videoPathList[index]));
                   }),
             )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
