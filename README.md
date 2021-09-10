@@ -3,7 +3,8 @@
 A new Flutter application.
 
 ## Config
-1. change videoPathList params in main.dar file  to your own phone local video pathes.
+1. set your phone video file path
+change videoPathList params in main.dar file  to your own phone local video pathes.
 
 ```
 class _MyHomePageState extends State<MyHomePage> {
