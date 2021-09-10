@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_video/video_player_thumbnail.dart';
+import 'package:flutter_video/video_thumbnail.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {
@@ -49,10 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
     '/storage/emulated/0/aserbao/1617006471639.mp4',
     '/storage/emulated/0/123.mp4',
     '/storage/emulated/0/aserbaoCamera/videotemp/1617002673582.mp4',
-    '/storage/emulated/0/aserbao/1617002634642.mp4',
-    '/storage/emulated/0/aserbao/1617002586386.mp4',
-    '/storage/emulated/0/aserbao/1617002558492.mp4',
-    '/storage/emulated/0/aserbao/1617002542544.mp4'
+    // '/storage/emulated/0/aserbao/1617002634642.mp4',
+    // '/storage/emulated/0/aserbao/1617002586386.mp4',
+    // '/storage/emulated/0/aserbao/1617002558492.mp4',
+    // '/storage/emulated/0/aserbao/1617002542544.mp4'
   ];
 
   Future<void> requestPermission() async {
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     return Container(
                         color: Color.fromARGB(155, 100, 100, 100),
                         height: 300,
-                        child: VideoPlayerThumbnail(videoPathList[index]));
+                        child: VideoThumbnailView(videoPathList[index]));
                   }),
             )
           ],

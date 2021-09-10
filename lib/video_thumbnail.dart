@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
-class VideoThumbnailThumbnail extends StatefulWidget {
-  const VideoThumbnailThumbnail(this.videoPath, {Key key}) : super(key: key);
+class VideoThumbnailView extends StatefulWidget {
+  const VideoThumbnailView(this.videoPath, {Key key}) : super(key: key);
 
   final String videoPath;
 
   @override
-  _VideoThumbnailThumbnailState createState() => _VideoThumbnailThumbnailState();
+  _VideoThumbnailViewState createState() => _VideoThumbnailViewState();
 }
 
-class _VideoThumbnailThumbnailState extends State<VideoThumbnailThumbnail> {
+class _VideoThumbnailViewState extends State<VideoThumbnailView> {
 
   @override
   void initState() {
@@ -31,11 +31,11 @@ class _VideoThumbnailThumbnailState extends State<VideoThumbnailThumbnail> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          // renderVideoThumbnail(),
-          Text(
-            widget.videoPath,
-            maxLines: 3,
-          ),
+          renderVideoThumbnail(),
+          // Text(
+          //   widget.videoPath,
+          //   maxLines: 3,
+          // ),
         ],
       ),
     );
@@ -52,10 +52,18 @@ class _VideoThumbnailThumbnailState extends State<VideoThumbnailThumbnail> {
   }
 
   Widget renderVideoThumbnail() {
+    print("zhao video thumbnail build 2.0........");
+
+
     return FutureBuilder<Uint8List>(
       future: render(),
       builder: (context, snapshot) {
-        if (!mounted || snapshot == null) {
+        print("zhao video thumbnail build 1.0........");
+
+        if (!mounted || snapshot == null || snapshot.data == null) {
+          print("zhao video data null");
+          print ("zhao video path: " + widget.videoPath);
+
           return SizedBox.shrink();
         }
 
@@ -63,6 +71,9 @@ class _VideoThumbnailThumbnailState extends State<VideoThumbnailThumbnail> {
         if (snapshot.hasError) print(snapshot.error);
 
         if (snapshot.connectionState == ConnectionState.done) {
+          print ("zhao video success ");
+
+
           return Container(
             width: 200.0,
             height: 200.0,
