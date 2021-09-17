@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_video/video_play_page.dart';
 import 'package:flutter_video/video_thumbnail.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -90,6 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 requestPermission();
                 setState(() {});
               }, child: Text("RequestPermission"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return VideoPlayPage();
+                }));
+              }, child: Text("To video play page"),
             ),
             Container(
               width: double.infinity,
