@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_video/video_play_page.dart';
-import 'package:flutter_video/video_thumbnail.dart';
+import 'package:flutter_video/xyz/albertsnow/my/video_player/video_play_page.dart';
+import 'package:flutter_video/xyz/albertsnow/my/thumbnail/video_thumbnail.dart';
+import 'package:flutter_video/xyz/albertsnow/my/thumbnail/video_player_thumbnail_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {
@@ -98,6 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   return VideoPlayPage();
                 }));
               }, child: Text("To video play page"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return VideoPlayerThumbnailPage();
+                }));
+              }, child: Text("Display thumbnail by VideoPlayer SDK"),
             ),
             Container(
               width: double.infinity,
