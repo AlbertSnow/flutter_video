@@ -194,23 +194,18 @@ public class VideoThumbnailPlugin implements MethodCallHandler {
             }
 
             if (targetH != 0 || targetW != 0) {
-                if (android.os.Build.VERSION.SDK_INT >= 27 && targetH != 0 && targetW != 0) {
-                    // API Level 27
-                    bitmap = retriever.getScaledFrameAtTime(timeMs * 1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC, targetW, targetH);
-                } else {
-                    bitmap = retriever.getFrameAtTime(timeMs * 1000);
-                    if (bitmap != null) {
-                        int width = bitmap.getWidth();
-                        int height = bitmap.getHeight();
-                        if (targetW == 0) {
-                            targetW = Math.round(((float) targetH / height) * width);
-                        }
-                        if (targetH == 0) {
-                            targetH = Math.round(((float) targetW / width) * height);
-                        }
-                        Log.d(TAG, String.format("original w:%d, h:%d => %d, %d", width, height, targetW, targetH));
-                        bitmap = Bitmap.createScaledBitmap(bitmap, targetW, targetH, true);
+                bitmap = retriever.getFrameAtTime(timeMs * 1000);
+                if (bitmap != null) {
+                    int width = bitmap.getWidth();
+                    int height = bitmap.getHeight();
+                    if (targetW == 0) {
+                        targetW = Math.round(((float) targetH / height) * width);
                     }
+                    if (targetH == 0) {
+                        targetH = Math.round(((float) targetW / width) * height);
+                    }
+                    Log.d(TAG, String.format("original w:%d, h:%d => %d, %d", width, height, targetW, targetH));
+                    bitmap = Bitmap.createScaledBitmap(bitmap, targetW, targetH, true);
                 }
             } else {
                 bitmap = retriever.getFrameAtTime(timeMs * 1000);
