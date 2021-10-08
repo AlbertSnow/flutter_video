@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_video/xyz/albertsnow/my/video_player/video_play_page.dart';
-import 'package:flutter_video/xyz/albertsnow/my/thumbnail/video_thumbnail.dart';
-import 'package:flutter_video/xyz/albertsnow/my/thumbnail/video_player_thumbnail_page.dart';
+import 'package:flutter_video/xyz/albertsnow/my/thumbnail/video_thumbnail_widget.dart';
+import 'package:flutter_video/xyz/albertsnow/my/video_player/video_player_thumbnail_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {
