@@ -2,7 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
+
+import 'video_thumbnail.dart';
 
 class VideoThumbnailView extends StatefulWidget {
   const VideoThumbnailView(this.videoPath, {Key key}) : super(key: key);

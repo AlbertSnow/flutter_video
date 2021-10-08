@@ -31,7 +31,7 @@ dependencies:
 #  video_player: ^2.1.15
   video_player: 0.11.1-mt.3
   permission_handler: ^8.1.4+2
-  video_thumbnail: ^0.4.3
+#  video_thumbnail: ^0.4.3
 
 dev_dependencies:
   flutter_test:
